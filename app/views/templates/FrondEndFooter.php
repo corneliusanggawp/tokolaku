@@ -5,10 +5,10 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-lg-6">
-                <p class="float-md-left font-sm text-muted mb-0">&copy; 2021 | <strong class="text-brand">TokoLaku</strong> - Ecommerce Webiste </p>
+                <p class="float-md-left font-sm text-muted mb-0">&copy; 2021 | <strong class="text-brand"><?= APPNAME; ?></strong> - Ecommerce Webiste </p>
             </div>
             <div class="col-lg-6">
-                <p class="text-lg-end text-start font-sm text-muted mb-0"> Develop by Kelompok F. All rights reserved </p>
+                <p class="text-lg-end text-start font-sm text-muted mb-0"> Develop by <?= DEVELOPER; ?> | All rights reserved </p>
             </div>
         </div>
     </div>
@@ -38,8 +38,6 @@
 <script src="<?= BASEURL; ?>/frondend/js/main.js"></script>
 <script src="<?= BASEURL; ?>/frondend/js/shop.js"></script>
 <!-- Sweet Alert -->
-<script src="<?= BASEURL; ?>/vendor/sweetalert/sweetalert2.all.min.js"></script>
-<?= SweetAlert::sweetAlert() ?>
-<?= SweetAlert::sweetToast() ?>
-</body>
+<script src="<?= BASEURL; ?>/vendor/SweetAlert/sweetalert2.all.min.js"></script> <?= SweetAlert::sweetAlert() ?> <?= SweetAlert::sweetToast() ?> </body>
+
 </html>

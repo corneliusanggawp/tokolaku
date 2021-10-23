@@ -1,9 +1,20 @@
+<?php
+    if($data['judul'] == '- Login' && isset($_SESSION['HomeLogin'])){
+        header('Location:' . BASEURL . '/home');
+        exit;
+    }else if($data['judul'] == '- Profile' && !isset($_SESSION['HomeLogin'])){
+        header('Location:' . BASEURL . '/home');
+        exit;
+    }
+?>
+
+
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>TokoLaku</title>
+    <title><?= APPNAME; ?> | Home <?= $data['judul'] ?></title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -181,7 +192,7 @@
                                     <li>
                                         <a class="language-dropdown-active" href="#"> <i class="fi-rs-user"></i> Account <i class="fi-rs-angle-small-down"></i></a>
                                         <ul class="language-dropdown">
-                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="<?= BASEURL; ?>/home/profile">Profile</a></li>
                                             <li><a href="<?= BASEURL; ?>/home/logout">Logout</a></li>
                                         </ul>
                                     </li>

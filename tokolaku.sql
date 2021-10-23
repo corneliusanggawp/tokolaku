@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Okt 2021 pada 14.57
+-- Waktu pembuatan: 23 Okt 2021 pada 12.39
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.2
 
@@ -24,36 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cart_item`
---
-
-CREATE TABLE `cart_item` (
-  `id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `order_details`
 --
 
 CREATE TABLE `order_details` (
   `id` int(11) NOT NULL,
-  `order_no` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `payment_method` int(11) NOT NULL,
-  `date` varchar(50) DEFAULT NULL,
-  `time` varchar(50) DEFAULT NULL,
-  `delivery_charge` int(11) NOT NULL,
-  `order_status` varchar(50) NOT NULL,
-  `payment_status` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `paymentMethod` int(11) NOT NULL,
+  `deliveryCharge` int(11) NOT NULL,
+  `orderStatus` varchar(50) NOT NULL,
+  `paymentStatus` int(11) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,8 +49,9 @@ CREATE TABLE `order_items` (
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `total` int(11) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -80,12 +63,14 @@ CREATE TABLE `order_items` (
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
-  `description` text NOT NULL,
   `stock` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `description` text DEFAULT NULL,
+  `price` double(10,2) NOT NULL,
+  `seller_id` int(11) NOT NULL,
+  `created` timestamp NULL DEFAULT current_timestamp(),
+  `modified` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -97,9 +82,9 @@ CREATE TABLE `product` (
 CREATE TABLE `shopping_session` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `total` decimal(10,0) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `total` double(10,2) DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,47 +95,38 @@ CREATE TABLE `shopping_session` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `email` varchar(191) NOT NULL,
-  `username` varchar(191) NOT NULL,
-  `password` varchar(191) NOT NULL,
-  `name` varchar(191) DEFAULT NULL,
-  `gender` tinyint(1) DEFAULT 0,
-  `address` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `date_of_birth` date DEFAULT NULL,
-  `is_verified` tinyint(1) NOT NULL DEFAULT 0,
-  `verif_code` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `modified_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `gender` varchar(6) DEFAULT NULL,
+  `birthDate` date DEFAULT NULL,
+  `phoneNumber` varchar(15) DEFAULT NULL,
+  `isVerified` tinyint(1) NOT NULL DEFAULT 0,
+  `verifCode` varchar(50) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `name`, `gender`, `address`, `image`, `phone_number`, `date_of_birth`, `is_verified`, `verif_code`, `created_at`, `modified_at`) VALUES
-(1, 'angga@gmail.com', 'angga', '$2y$10$MPjzqoEpLFSV5FQL8tZX9.r42Zz1cLGuZMtFRD6XmauvviWoZnHFC', '', 0, NULL, NULL, NULL, NULL, 1, NULL, '2021-10-21 05:49:16', '2021-10-21 09:36:10'),
-(2, 'gabi@gmail.com', 'gabi', '$2y$10$IdP/ptUM3nrbHke7rLPBnulGsIKZpS2uGtH8dJ0QCGr32PX.gXQ42', '', 0, '', '', '', '0000-00-00', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'wangsa@gmail.com', 'wangsa', '$2y$10$xQtQyrhScTNe2axmMmVtXuX3n5.ldtWlO4Mx.9HXOYAFy4G0vP9ve', '', 0, '', '', '', '0000-00-00', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `image`, `gender`, `birthDate`, `phoneNumber`, `isVerified`, `verifCode`, `created`, `modified`) VALUES
+(14, NULL, 'angga', 'corneliuswidipratama@gmail.com', '$2y$10$Ze5rYtzEwTEh6ZydLwepE.kBZNI7M5LAAz8.e0qZN0kMGBnd0dqSO', NULL, NULL, NULL, NULL, 1, '9823b5ca010441454a68c49a416ba6d0', '2021-10-23 05:38:10', '2021-10-23 10:38:28');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `cart_item`
---
-ALTER TABLE `cart_item`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `session_id` (`session_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- Indeks untuk tabel `order_details`
 --
 ALTER TABLE `order_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `paymentMethod` (`paymentMethod`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indeks untuk tabel `order_items`
@@ -164,7 +140,9 @@ ALTER TABLE `order_items`
 -- Indeks untuk tabel `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `seller_id` (`seller_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indeks untuk tabel `shopping_session`
@@ -199,30 +177,38 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT untuk tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Ketidakleluasaan untuk tabel `cart_item`
+-- Ketidakleluasaan untuk tabel `order_details`
 --
-ALTER TABLE `cart_item`
-  ADD CONSTRAINT `cart_item_ibfk_1` FOREIGN KEY (`session_id`) REFERENCES `shopping_session` (`id`),
-  ADD CONSTRAINT `cart_item_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_details_ibfk_1` FOREIGN KEY (`paymentMethod`) REFERENCES `payment_method` (`id`),
+  ADD CONSTRAINT `order_details_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `order_items`
 --
 ALTER TABLE `order_items`
-  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_details` (`id`);
+  ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order_details` (`id`),
+  ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`seller_id`) REFERENCES `members` (`id`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 
 --
 -- Ketidakleluasaan untuk tabel `shopping_session`

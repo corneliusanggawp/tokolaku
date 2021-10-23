@@ -1,5 +1,7 @@
 <?php 
 
+define('APPNAME', 'TokoLaku');
+define('DEVELOPER', 'Kelompok F');
 define('BASEURL', 'http://localhost/tokolaku/public');
 
 // DB

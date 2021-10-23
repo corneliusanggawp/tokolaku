@@ -16,7 +16,7 @@
                             <div class="heading_s1">
                                 <h3 class="mb-30">Create an Account</h3>
                             </div>
-                            <p class="mb-50 font-sm"> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy </p>
+                            <p class="mb-30 font-sm"> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy </p>
                             <form action="<?= BASEURL; ?>/home/authRegister" method="post">
                                 <div class="form-group">
                                     <input type="text" required="" name="username" id="username" placeholder="Username">
@@ -30,9 +30,7 @@
                                 <div class="form-group">
                                     <input required="" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
                                 </div>
-                                <div class="form-group">
-                                    <?php Flasher::flash(); ?>
-                                </div>
+                                <div class="form-group"> <?php Flasher::flash(); ?> </div>
                                 <div class="login_footer form-group">
                                     <div class="chek-form">
                                         <div class="custome-checkbox">
@@ -46,7 +44,7 @@
                                     <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Submit &amp; Register</button>
                                 </div>
                             </form>
-                            <div class="text-muted text-center">Already have an account? <a href="<?= BASEURL; ?>/home/login">Sign In now</a></div>
+                            <div class="text-muted text-center">Already have an account? <a href="<?= BASEURL; ?>/home/login">Sign in now</a></div>
                         </div>
                     </div>
                 </div>
