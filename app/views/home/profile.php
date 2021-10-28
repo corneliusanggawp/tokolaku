@@ -113,7 +113,8 @@
                                             <form method="post" name="enq" action="<?= BASEURL; ?>/home/update_User" enctype="multipart/form-data">
                                                 <div class="row justify-content-md-center">
                                                     <div class="col-md-4">
-                                                        <img src="<?= IMGBASEURL; ?>/<?= $data['user']['image']; ?>" alt="" id="image" name="imageOld">
+                                            
+                                                        <img src="<?= IMGBASEURL; ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="imageOld">
                                                         <input type="hidden" class="form-control" id="oldImage" name="oldImage" value="<?= $data['user']['image']; ?>">
                                                         <input type="file" class="form-control" id="upload" name="upload" accept="image/png, image/jpg, image/jpeg">
                                                     </div>
@@ -162,11 +163,15 @@
                                                         <label>No Telp <span class="required">*</span></label>
                                                         <input value="<?= $data['user']['phoneNumber'] == null ? "N/A" : $data['user']['phoneNumber'] ?>" class="form-control square" id="phone" name="phone" type="text" required>
                                                     </div>
-                                                    <div class="col-3">
-                                                        <button type="submit" class="btn form-control" name="update_Profile">Update</button>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <a href="<?= BASEURL; ?>/home/delete_User/<?= $_SESSION['HomeLogin']['id']; ?>"><button type="button" class="btn form-control bg-white text-success">Delete</button></a>
+                                                    <div class="container">
+                                                        <div class="row justify-content-md-center">
+                                                            <div class="col-3">
+                                                                <button type="submit" class="btn form-control" name="update_Profile">Edit</button>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <a href="<?= BASEURL; ?>/home/delete_User/<?= $_SESSION['HomeLogin']['id']; ?>"><button type="button" class="btn btn-danger form-control bg-white text-danger"> Delete </button></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>
