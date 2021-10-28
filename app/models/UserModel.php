@@ -41,6 +41,40 @@ class UserModel {
         return $this->db->rowCount();
     }
 
+    public function updateUser($id, $name, $username, $email, $image, $gender, $birthDate, $phoneNumber)
+    {
+        $query = " 
+            UPDATE ". $this->table ."
+            SET name = :name, username = :username, email = :email, image = :image, gender = :gender, birthDate = :birthDate, phoneNumber = :phoneNumber
+            WHERE id = :id
+        ";
+
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->bind('name', $name);
+        $this->db->bind('username', $username);
+        $this->db->bind('email', $email);
+        $this->db->bind('image', $image);
+        $this->db->bind('gender', $gender);
+        $this->db->bind('birthDate', $birthDate);
+        $this->db->bind('phoneNumber', $phoneNumber);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function deleteUser($id){
+        $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
+
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function getVerifCode($username){
         $this->db->query('SELECT verifCode FROM ' . $this->table . ' WHERE username = :username OR email = :username');
         $this->db->bind('username', $username);
@@ -58,5 +92,14 @@ class UserModel {
          $this->db->execute();
          
          return $this->db->rowCount();
+    }
+
+    public function getImageUser($id){
+        $this->db->query('SELECT image FROM ' . $this->table . ' WHERE id = :id');
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+        
+        return implode($this->db->single());
     }
 }

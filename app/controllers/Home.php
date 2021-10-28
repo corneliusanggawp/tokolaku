@@ -7,7 +7,7 @@ class Home extends Controller {
         $data['pageTitle']  = '';
         $data['category']   = $this->model('CategoryModel')->getAllProductCategories();
         $data['product']    = $this->model('ProductModel')->getAllProduct(); 
-
+    
         $this->view('templates/FrondEndHeader', $data);
         $this->view('home/index', $data);
         $this->view('templates/FrondEndFooter');
@@ -62,7 +62,7 @@ class Home extends Controller {
             exit;
         }
     }
-
+    
     public function authLogin()
     {
         if(!isset($_POST['username']) && !isset($_POST['password'])){
@@ -167,6 +167,66 @@ class Home extends Controller {
                 SweetAlert::setSweetAlert('Vertifikasi Berhasil', 'Silakan login', 'success');
                 header('Location:' . BASEURL . '/home/login');
                 exit;
+            }
+        }
+    }
+    
+    public function update_User()
+    {
+        if(!isset($_SESSION['HomeLogin'])){
+            header('Location:' . BASEURL . '/home');
+            exit;
+        }else{
+                $id             = $_SESSION['HomeLogin']['id'];
+                $name           = $_POST['name'];
+                $username       = $_POST['username'];
+                $email          = $_POST['email'];
+                $oldImage       = $_POST['oldImage'];
+                $gender         = $_POST['gender'];
+                $birthDate      = $_POST['birthdate'];
+                $phoneNumber    = $_POST['phone'];
+                
+                if($_FILES['upload']['error'] == 4){
+                    $image = $oldImage;
+                }else{
+                    FileController::deleteImage($oldImage);
+                    $image = FileController::uploadImage($_FILES['upload']);
+                }
+
+                if($this->model('UserModel')->updateUser($id, $name, $username, $email, $image, $gender, $birthDate, $phoneNumber) > 0){
+                    SweetAlert::setSweetAlert('Berhasil Mengubah', 'Profile berhasil diperbarui', 'success');
+                    header('Location:' . BASEURL . '/home/profile');
+                    exit;
+                }else{
+                    header('Location:' . BASEURL . '/home/profile');
+                    exit;
+                }
+            
+        }
+    }
+
+    public function delete_User($id = null)
+    {
+        if(!isset($_SESSION['HomeLogin'])){
+            header('Location:' . BASEURL . '/home');
+            exit;
+        }else{
+            if($id == null){
+                header('Location:' . BASEURL . '/home/error');
+                exit;
+            }else{
+                $image = $this->model('UserModel')->getImageUser($id);
+                if($this->model('UserModel')->deleteUser($id)){
+                    FileController::deleteImage($image);
+                    SweetAlert::setSweetAlert('Berhasil Menghapus', 'Profile berhasil dihapus', 'success');
+                    header('Location:' . BASEURL . '/home/logout');
+                    exit;
+                }else{
+                    SweetAlert::setSweetAlert('Gagal Menghapus', 'Profile gagal dihapus', 'error');
+                    header('Location:' . BASEURL . '/home/profile');
+                    exit;
+                }  
+                        
             }
         }
     }

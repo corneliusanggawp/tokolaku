@@ -55,7 +55,7 @@
                                         <div class="product-category">
                                             <a href="#"><?= $product['category'] ?></a>
                                         </div>
-                                        <h2><a href="#">Mens Porcelain Shirt</a></h2>
+                                        <h2><a href="#"><?= $product['name'] ?></a></h2>
                                         <div class="rating-result" title="90%">
                                             <span>
                                                 <span></span>
@@ -72,7 +72,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
-                </div>
+                </div
             </div>
         </div>
     </section>

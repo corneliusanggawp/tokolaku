@@ -110,44 +110,63 @@
                                             <h5>Profil Saya</h5>
                                         </div>
                                         <div class="card-body">
-                                            <form method="post" name="enq">
+                                            <form method="post" name="enq" action="<?= BASEURL; ?>/home/update_User" enctype="multipart/form-data">
                                                 <div class="row justify-content-md-center">
                                                     <div class="col-md-4">
-                                                        <img src="<?= IMGBASEURL ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="image">
+                                                        <img src="<?= IMGBASEURL; ?>/<?= $data['user']['image']; ?>" alt="" id="image" name="imageOld">
+                                                        <input type="hidden" class="form-control" id="oldImage" name="oldImage" value="<?= $data['user']['image']; ?>">
                                                         <input type="file" class="form-control" id="upload" name="upload" accept="image/png, image/jpg, image/jpeg">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-md-6 mt-4">
                                                         <label>Nama <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['name'] == null ? "N/A" : $data['user']['name'] ?>" class="form-control square" id="name" name="name" type="text" disabled>
+                                                        <input value="<?= $data['user']['name'] == null ? "N/A" : $data['user']['name'] ?>" class="form-control square" id="name" name="name" type="text">
                                                     </div>
                                                     <div class="form-group col-md-6 mt-4">
                                                         <label>Username <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['username'] ?>" class="form-control square" id="username" name="username" required disabled>
+                                                        <input value="<?= $data['user']['username'] ?>" class="form-control square" id="username" name="username">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Tanggal Lahir <span class="required">*</span></label>
-                                                        <input value="" class="form-control square" id="birthdate" name="birthdate" type="date" readonly>
+                                                        <input value="<?= $data['user']['birthDate'] ?>" class="form-control square" id="birthdate" name="birthdate" type="date">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Email <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['email']?>" class="form-control square" id="email" name="email" type="email" required disabled>
+                                                        <input value="<?= $data['user']['email']?>" class="form-control square" id="email" name="email" type="email">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Gender <span class="required">*</span></label>
-                                                        <select class="form-select" id="gender" name="gender" required disabled>
-                                                            <option selected disabled value="">Pilih Kategori</option>
-                                                            <option value="Pria">Pria</option>
-                                                            <option value="Wanita">Wanita</option>
+                                                        <select class="form-select" id="gender" name="gender" required>
+                                                            <?php     
+                                                                if(!isset($data['user']['gender'])) {
+                                                                    echo "<option selected value=''>Pilih Kategori</option>";
+                                                                    echo "<option value='Pria'>Pria</option>";
+                                                                    echo "<option value='Wanita'>Wanita</option>";
+                                                                } else {
+                                                                    $pria = "Pria";
+                                                                    $wanita = "Wanita";
+                                                                    $gender = $data['user']['gender'];
+                                                                    if (strcmp($gender, $pria) == 0) {
+                                                                        echo "<option selected value='Pria'>Pria</option>";
+                                                                        echo "<option value='Wanita'>Wanita</option>";
+                                                                    } else {
+                                                                        echo "<option selected value='Wanita'>Wanita</option>";
+                                                                        echo "<option value='Pria'>Pria</option>";
+                                                                    }   
+                                                                }                                                         
+                                                            ?>
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>No Telp <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['phoneNumber'] == null ? "N/A" : $data['user']['phone_number'] ?>" class="form-control square" id="phone" name="phone" type="text" required disabled>
+                                                        <input value="<?= $data['user']['phoneNumber'] == null ? "N/A" : $data['user']['phoneNumber'] ?>" class="form-control square" id="phone" name="phone" type="text" required>
                                                     </div>
-                                                    <div class="col-md-12">
-                                                        <button type="button" class="btn btn-fill-out w-100 submit btnEditProfile" value="Submit">Edit Profile</button>
+                                                    <div class="col-3">
+                                                        <button type="submit" class="btn form-control" name="update_Profile">Update</button>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <a href="<?= BASEURL; ?>/home/delete_User/<?= $_SESSION['HomeLogin']['id']; ?>"><button type="button" class="btn form-control bg-white text-success">Delete</button></a>
                                                     </div>
                                                 </div>
                                             </form>
