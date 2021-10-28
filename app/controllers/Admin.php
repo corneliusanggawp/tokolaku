@@ -290,6 +290,7 @@ class Admin extends Controller {
                 if($_FILES['upload']['error'] == 4){
                     $image = $oldImage;
                 }else{
+                    FileController::deleteImage($oldImage);
                     $image = FileController::uploadImage($_FILES['upload']);
                 }
 
@@ -298,11 +299,9 @@ class Admin extends Controller {
                     header('Location:' . BASEURL . '/admin/categories');
                     exit;
                 }else{
-                    SweetAlert::setSweetAlert('Gagal Mengubah', 'Kategori gagal diperbarui', 'error');
                     header('Location:' . BASEURL . '/admin/categories');
                     exit;
                 }
-                exit;
             }
         }
     }
@@ -386,7 +385,6 @@ class Admin extends Controller {
                             header('Location:' . BASEURL . '/admin/product');
                             exit;
                         }else{
-                            SweetAlert::setSweetAlert('Gagal Ditambahkan', 'Silakan input ulang', 'error');
                             header('Location:' . BASEURL . '/admin/product');
                             exit;
                         }
@@ -424,6 +422,7 @@ class Admin extends Controller {
                 if($_FILES['upload']['error'] == 4){
                     $image = $oldImage;
                 }else{
+                    FileController::deleteImage($oldImage);
                     $image = FileController::uploadImage($_FILES['upload']);
                 }
 

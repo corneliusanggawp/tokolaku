@@ -16,7 +16,6 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/frondend/css/main.css">
     <!-- Sweet Alert -->
-    <script src="<?= BASEURL; ?>/vendor/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<?= BASEURL; ?>/vendor/sweetalert2.min.css">
 </head>
 

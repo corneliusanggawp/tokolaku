@@ -41,7 +41,7 @@
                                             <h5 class="mb-0">Hello <?= $data['user']['name'] == null ?  $data['user']['username'] :  $data['user']['username'] ?>!</h5>
                                         </div>
                                         <div class="card-body">
-                                            <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
+                                            <p>Dari halaman dasbor. Anda dapat dengan mudah memeriksa & melihat pesanan terbaru Anda, mengelola alamat pengiriman dan penagihan, serta mengedit detail akun Anda.</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -55,11 +55,11 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Order</th>
-                                                            <th>Date</th>
+                                                            <th>No Order</th>
+                                                            <th>Tanggal</th>
                                                             <th>Status</th>
                                                             <th>Total</th>
-                                                            <th>Actions</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -110,40 +110,47 @@
                                             <h5>Profil Saya</h5>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row justify-content-md-center">
-                                                <div class="col-md-4">
-                                                    <img src="<?= IMGBASEURL ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="image">
+                                            <form method="post" name="enq">
+                                                <div class="row justify-content-md-center">
+                                                    <div class="col-md-4">
+                                                        <img src="<?= IMGBASEURL ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="image">
+                                                        <input type="file" class="form-control" id="upload" name="upload" accept="image/png, image/jpg, image/jpeg">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label><b>Nama</b></label>
-                                                    <p><?= $data['user']['name'] == null ? "-" : $data['user']['name'] ?></p>
+                                                <div class="row">
+                                                    <div class="form-group col-md-6 mt-4">
+                                                        <label>Nama <span class="required">*</span></label>
+                                                        <input value="<?= $data['user']['name'] == null ? "N/A" : $data['user']['name'] ?>" class="form-control square" id="name" name="name" type="text" disabled>
+                                                    </div>
+                                                    <div class="form-group col-md-6 mt-4">
+                                                        <label>Username <span class="required">*</span></label>
+                                                        <input value="<?= $data['user']['username'] ?>" class="form-control square" id="username" name="username" required disabled>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Tanggal Lahir <span class="required">*</span></label>
+                                                        <input value="" class="form-control square" id="birthdate" name="birthdate" type="date" readonly>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Email <span class="required">*</span></label>
+                                                        <input value="<?= $data['user']['email']?>" class="form-control square" id="email" name="email" type="email" required disabled>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>Gender <span class="required">*</span></label>
+                                                        <select class="form-select" id="gender" name="gender" required disabled>
+                                                            <option selected disabled value="">Pilih Kategori</option>
+                                                            <option value="Pria">Pria</option>
+                                                            <option value="Wanita">Wanita</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>No Telp <span class="required">*</span></label>
+                                                        <input value="<?= $data['user']['phoneNumber'] == null ? "N/A" : $data['user']['phone_number'] ?>" class="form-control square" id="phone" name="phone" type="text" required disabled>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="button" class="btn btn-fill-out w-100 submit btnEditProfile" value="Submit">Edit Profile</button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label><b>Username</b></label>
-                                                    <p><?= $data['user']['username'] ?></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label><b>Tanggal Lahir</b></label>                
-                                                    <p><?= $data['user']['birthDate'] == null ? "-" : date("j F Y", strtotime($data['user']['birthDate'])) ?></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label><b>Email</b></label>
-                                                    <p><?= $data['user']['email']?></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label><b>Gender</b></label>
-                                                    <p><?= $data['user']['gender'] == null ? "-" : $data['user']['gender'] ?></p>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label><b>No Telp</b></label>
-                                                    <p><?= $data['user']['phoneNumber'] == null ? "-" : $data['user']['phone_number'] ?></p>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <button class="btn btn-fill-out submit"><i class="fi-rs-edit mr-10"></i>Ubah Profil Diri</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

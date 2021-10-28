@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 03:29 AM
+-- Generation Time: Oct 28, 2021 at 06:36 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -75,9 +75,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `description`, `image`) VALUES
-(1, 'Elektronik', 'Komputer, Laptop, handpone', 'IMG61798f130c1cd.jpg'),
-(16, 'Fashion', 'Pakaian, Sepatu, Tas, Asessoris', 'IMG617982fbed133.jpg'),
-(25, 'Makanan', 'Makanan & Minuman', 'IMG6179ba69c0138.jpg');
+(27, 'Atasan', 'Kaos, Kemeja,  dsbg', 'IMG617a0d907d996.jpg'),
+(28, 'Tas', 'Slingbag, Ransel, Handbag, Tote Bag, dsbg', 'IMG617a0e1c5902d.jpg'),
+(30, 'Sepatu', 'Sneakers, Flat Shoes, Boots, Slip On, dsbg', 'IMG617a0e9f9dc91.jpg'),
+(31, 'Topi', 'Fedora, Trucker, Bucket Hat, Snapback, Kupluk, Flat Cap, dsbg', 'IMG617a0f3cf41bf.jpg'),
+(32, 'Celana', 'Staight Cut, Skinny Fit, Boot Cut,  Slim Fit,  Joger, dsbg', 'IMG617a10079b179.jpg'),
+(33, 'Dekorasi', 'Bantal, Sarung, dsbg', 'IMG617a1072ec5e6.jpg'),
+(34, 'Ransel', 'Backpack, dsbg', 'IMG617a109cc6570.jpg');
 
 -- --------------------------------------------------------
 
@@ -511,8 +515,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `category_id`, `image`, `stock`, `description`, `price`, `seller_id`, `created`, `modified`) VALUES
-(5, 'Baju Kemeja', 1, '11.jpg', 11, 'Baju Kemeja Formal', 150000.00, 1, '2021-10-26 14:05:32', '2021-10-27 20:02:50'),
-(6, 'Laptop Kentang', 1, '22.jpg', 11, 'Ini bukan laptop gaming', 7000000.00, 1, '2021-10-26 14:06:17', '2021-10-27 20:03:03');
+(10, 'Tas AAWD', 28, 'IMG617a111425f00.jpg', 5, 'Tas Branded', 1000000.00, 1, '2021-10-27 21:55:16', '2021-10-27 21:55:16'),
+(11, 'Baju SOEF', 27, 'IMG617a137f74cf0.jpg', 12, 'Baju asdada qwdas asddwa', 150000.00, 1, '2021-10-27 22:05:35', '2021-10-27 22:05:35');
 
 -- --------------------------------------------------------
 
@@ -819,7 +823,7 @@ ALTER TABLE `cart_items`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `members`
@@ -885,7 +889,7 @@ ALTER TABLE `pma__savedsearches`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `role`

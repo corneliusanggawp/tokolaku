@@ -13,7 +13,7 @@
         </div>
     </div>
 </footer>
-<!-- Vendor JS-->
+Vendor JS
 <script src="<?= BASEURL; ?>/frondend/js/vendor/modernizr-3.6.0.min.js"></script>
 <script src="<?= BASEURL; ?>/frondend/js/vendor/jquery-3.6.0.min.js"></script>
 <script src="<?= BASEURL; ?>/frondend/js/vendor/jquery-migrate-3.3.0.min.js"></script>
@@ -37,6 +37,7 @@
 <!-- Template  JS -->
 <script src="<?= BASEURL; ?>/frondend/js/main.js"></script>
 <script src="<?= BASEURL; ?>/frondend/js/shop.js"></script>
+<script src="<?= BASEURL; ?>/js/script.js"></script>
 <!-- Sweet Alert -->
 <script src="<?= BASEURL; ?>/vendor/SweetAlert/sweetalert2.all.min.js"></script> <?= SweetAlert::sweetAlert() ?> <?= SweetAlert::sweetToast() ?> </body>
 
