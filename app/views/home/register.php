@@ -14,9 +14,9 @@
                     <div class="login_wrap widget-taber-content p-30 background-white border-radius-5">
                         <div class="padding_eight_all bg-white">
                             <div class="heading_s1">
-                                <h3 class="mb-30">Create an Account</h3>
+                                <h3 class="mb-30">Buat Akun Baru</h3>
                             </div>
-                            <p class="mb-30 font-sm"> Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy </p>
+                            <p class="mb-30 font-sm"> Data pribadi Anda akan digunakan untuk mendukung pengalaman Anda di seluruh situs web ini, untuk mengelola akses ke akun Anda. </p>
                             <form action="<?= BASEURL; ?>/home/authRegister" method="post">
                                 <div class="form-group">
                                     <input type="text" required="" name="username" id="username" placeholder="Username">
@@ -30,21 +30,14 @@
                                 <div class="form-group">
                                     <input required="" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">
                                 </div>
-                                <div class="form-group"> <?php Flasher::flash(); ?> </div>
-                                <div class="login_footer form-group">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="">
-                                            <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
-                                        </div>
-                                    </div>
-                                    <a href="page-privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
+                                    <div class="form-group"> <?php Flasher::flash(); ?>
                                 </div>
+                                <br>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Submit &amp; Register</button>
+                                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Daftar</button>
                                 </div>
                             </form>
-                            <div class="text-muted text-center">Already have an account? <a href="<?= BASEURL; ?>/home/login">Sign in now</a></div>
+                            <div class="text-muted text-center">Sudah punya akun? <a href="<?= BASEURL; ?>/home/login">Masuk</a></div>
                         </div>
                     </div>
                 </div>

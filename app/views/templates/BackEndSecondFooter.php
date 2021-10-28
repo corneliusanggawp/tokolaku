@@ -19,8 +19,7 @@
 <!-- Sweet Alert -->
 <script src="<?= BASEURL; ?>/vendor/SweetAlert/sweetalert2.all.min.js"></script>
 <?= SweetAlert::sweetAlert() ?>
-<?= SweetAlert::sweetToast() ?> </body>
-
+<?= SweetAlert::sweetToast() ?> 
 </body>
 
 </html>

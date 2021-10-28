@@ -43,12 +43,22 @@ class MemberModel {
         return implode($this->db->single());
     }
 
-    public function userVerification($username){
-         $this->db->query('UPDATE members SET isVerified = 1  WHERE username = :username');
-         $this->db->bind('username', $username);
+    public function userVerification($username, $verifCode){
+        $this->db->query('UPDATE ' . $this->table . ' SET isVerified = 1  WHERE username = :username AND verifCode = :verifCode');
+        $this->db->bind('username', $username);
+        $this->db->bind('verifCode', $verifCode);
 
-         $this->db->execute();
+        $this->db->execute();
          
-         return $this->db->rowCount();
+        return $this->db->rowCount();
+    }
+
+    public function getMemberRole($id){
+        $this->db->query('SELECT role_id FROM ' . $this->table . ' WHERE id = :id');
+        $this->db->bind('id', $id);
+
+        $this->db->execute();
+        
+        return implode($this->db->single());
     }
 }

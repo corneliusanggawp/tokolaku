@@ -1,17 +1,9 @@
-<?php
-    if(!isset($_SESSION['AdminLogin'])) {
-        header('Location:' . BASEURL . '/admin/login');
-        exit;
-    }
-?>
-
-
 <!DOCTYPE HTML>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title><?= APPNAME; ?></title>
+    <title><?= APPNAME; ?> | Admin <?= $data['pageTitle'] ?></title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,14 +15,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?= BASEURL; ?>/backend/imgs/theme/favicon.svg">
     <!-- Template CSS -->
     <link href="<?= BASEURL; ?>/backend/css/main.css" rel="stylesheet" type="text/css" />
+    <!-- Croppie -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 </head>
 
 <body>
     <div class="screen-overlay"></div>
     <aside class="navbar-aside" id="offcanvas_aside">
         <div class="aside-top">
-            <a href="index.html" class="brand-wrap">
-                <img src="<?= BASEURL; ?>/backend/imgs/theme/logo.svg" class="logo" alt="Evara Dashboard">
+            <a href="<?= BASEURL; ?>/admin" class="brand-wrap">
+                <img src="<?= BASEURL; ?>/backend/imgs/theme/logo.svg" class="logo" alt="TokoLaku Dashboard">
             </a>
             <div>
                 <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
@@ -38,48 +32,53 @@
         </div>
         <nav>
             <ul class="menu-aside">
-                <li class="menu-item active">
-                    <a class="menu-link" href="index.html"> <i class="icon material-icons md-home"></i>
+                <li class="menu-item <?= $data['menuDashboard'] ?>">
+                    <a class="menu-link" href="<?= BASEURL; ?>/admin"> <i class="icon material-icons md-home"></i>
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="#"> <i class="icon material-icons md-shopping_bag"></i>
+                <li class="menu-item <?= $data['menuProduct'] ?>">
+                    <a class="menu-link" href="<?= BASEURL; ?>/admin/product"> <i class="icon material-icons md-shopping_bag"></i>
                         <span class="text">Produk</span>
                     </a>
-                    <div class="submenu">
-                        <a href="#">Produk</a>
-                        <a href="#">Kategori</a>
-                    </div>
                 </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="page-orders-1.html"> <i class="icon material-icons md-shopping_cart"></i>
+                <?php if ($_SESSION['AdminLogin']['role_id'] == 1): ?>
+                    <li class="menu-item <?= $data['menuCategory'] ?>">
+                        <a class="menu-link" href="<?= BASEURL; ?>/admin/categories"><i class="icon material-icons md-category"></i>
+                            <span class="text">Kategori</span>
+                        </a>
+                    </li>
+                <?php endif ?>
+                <li class="menu-item <?= $data['menuOrder'] ?>">
+                    <a class="menu-link" href="#"> <i class="icon material-icons md-shopping_cart"></i>
                         <span class="text">Order</span>
                     </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item <?= $data['menuSeller'] ?>">
                     <a class="menu-link" href="#"> <i class="icon material-icons md-store"></i>
                         <span class="text">Seller</span>
                     </a>
                 </li>
             </ul>
-            <hr>
-            <ul class="menu-aside">
-                <li class="menu-item has-submenu">
-                    <a class="menu-link" href="#"> <i class="icon material-icons md-person"></i>
-                        <span class="text">Account</span>
-                    </a>
-                    <div class="submenu">
-                        <a href="#">Member</a>
-                        <a href="#">User</a>
-                    </div>
-                </li>
-                <li class="menu-item">
-                    <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
-                        <span class="text">Settings</span>
-                    </a>
-                </li>
-            </ul>
+            <?php if ($_SESSION['AdminLogin']['role_id'] == 1): ?>
+                <hr>
+                <ul class="menu-aside">
+                    <li class="menu-item has-submenu <?= $data['menuAccount'] ?>">
+                        <a class="menu-link" href="#"> <i class="icon material-icons md-person"></i>
+                            <span class="text">Akun</span>
+                        </a>
+                        <div class="submenu">
+                            <a href="#">Member</a>
+                            <a href="#">User</a>
+                        </div>
+                    </li>
+                    <li class="menu-item <?= $data['menuSettings'] ?>">
+                        <a class="menu-link" href="#"> <i class="icon material-icons md-settings"></i>
+                            <span class="text">Pengaturan</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php endif ?>
             <br>
             <br>
         </nav>

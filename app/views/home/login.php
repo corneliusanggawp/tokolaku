@@ -14,31 +14,23 @@
                     <div class="login_wrap widget-taber-content p-30 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5">
                         <div class="padding_eight_all bg-white">
                             <div class="heading_s1">
-                                <h3 class="mb-4">Log In</h3>
+                                <h3 class="mb-4">Masuk</h3>
                             </div>
                             <form action="<?= BASEURL; ?>/home/authLogin" method="post">
                                 <div class="form-group">
-                                    <input type="text" required="" name="username" id="username" placeholder="Username or Email">
+                                    <input type="text" name="username" id="username" placeholder="Username atau Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input required="" type="password" name="password" id="password" placeholder="Password">
+                                    <input type="password" name="password" id="password" placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
                                         <?php Flasher::flash(); ?>
                                 </div>
-                                <div class="login_footer form-group">
-                                    <div class="chek-form">
-                                        <div class="custome-checkbox">
-                                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
-                                            <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                        </div>
-                                    </div>
-                                    <a class="text-muted" href="#">Forgot password?</a>
-                                </div>
+                                <br>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Log in</button>
+                                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Masuk</button>
                                 </div>
-                                <div class="text-muted text-center">Don't have account? <a href="<?= BASEURL; ?>/home/register">Sign Up</a></div>
+                                <div class="text-muted text-center">Tidak Punya Akun? <a href="<?= BASEURL; ?>/home/register">Daftar</a></div>
                             </form>
                         </div>
                     </div>

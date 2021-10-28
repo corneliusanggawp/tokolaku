@@ -9,7 +9,15 @@ class UserModel {
         $this->db = new Database;
     }
 
-    public function getUserData($username)
+    public function getUserDataByID($id)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id = :id');
+        $this->db->bind('id', $id);
+        
+        return $this->db->single();
+    }
+
+    public function getUserDataByUsername($username)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE username = :username OR email = :username');
         $this->db->bind('username', $username);
@@ -42,13 +50,13 @@ class UserModel {
         return implode($this->db->single());
     }
 
-    public function userVerification($username){
-         $this->db->query('UPDATE users SET isVerified = 1  WHERE username = :username');
+    public function userVerification($username, $verifCode){
+         $this->db->query('UPDATE users SET isVerified = 1  WHERE username = :username AND verifCode = :verifCode');
          $this->db->bind('username', $username);
+         $this->db->bind('verifCode', $verifCode);
 
          $this->db->execute();
          
          return $this->db->rowCount();
     }
-
 }

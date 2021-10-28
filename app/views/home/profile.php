@@ -38,7 +38,7 @@
                                 <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5 class="mb-0">Hello <?= $_SESSION['Login']['username'] ?>!</h5>
+                                            <h5 class="mb-0">Hello <?= $data['user']['name'] == null ?  $data['user']['username'] :  $data['user']['username'] ?>!</h5>
                                         </div>
                                         <div class="card-body">
                                             <p>From your account dashboard. you can easily check &amp; view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details.</a></p>
@@ -65,23 +65,9 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>#1357</td>
-                                                            <td>March 45, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$125.00 for 2 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2468</td>
-                                                            <td>June 29, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$364.00 for 5 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2366</td>
-                                                            <td>August 02, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$280.00 for 3 item</td>
+                                                            <td>21 Oct 2021</td>
+                                                            <td>Sedang Diproses</td>
+                                                            <td>IDR 125.000,00</td>
                                                             <td><a href="#" class="btn-small d-block">View</a></td>
                                                         </tr>
                                                     </tbody>
@@ -95,24 +81,24 @@
                                         <div class="col-lg-6">
                                             <div class="card mb-3 mb-lg-0">
                                                 <div class="card-header">
-                                                    <h5 class="mb-0">Billing Address</h5>
+                                                    <h5 class="mb-0">Alamat Pembayaran</h5>
                                                 </div>
                                                 <div class="card-body">
-                                                    <address>3522 Interstate<br> 75 Business Spur,<br> Sault Ste. <br>Marie, MI 49783</address>
-                                                    <p>New York</p>
-                                                    <a href="#" class="btn-small">Edit</a>
+                                                    <address>Jl. Babarsari No.43 Janti,  <br> Caturtunggal, Kec. Depok, <br>  Kabupaten Sleman, <br>Telp : 082171213</address>
+                                                    <p>Daerah Istimewa Yogyakarta</p>
+                                                    <a href="#" class="btn-small">Ubah</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5 class="mb-0">Shipping Address</h5>
+                                                    <h5 class="mb-0">Alamat Pengiriman</h5>
                                                 </div>
                                                 <div class="card-body">
-                                                    <address>4299 Express Lane<br> Sarasota, <br>FL 34249 USA <br>Phone: 1.941.227.4444</address>
-                                                    <p>Sarasota</p>
-                                                    <a href="#" class="btn-small">Edit</a>
+                                                    <address>Jl. Babarsari No.43 Janti,  <br> Caturtunggal, Kec. Depok, <br>  Kabupaten Sleman, <br>Telp : 082171213</address>
+                                                    <p>Daerah Istimewa Yogyakarta</p>
+                                                    <a href="#" class="btn-small">Ubah</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,33 +107,38 @@
                                 <div class="tab-pane fade" id="profile-details" role="tabpanel" aria-labelledby="profile-details-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Profile Details</h5>
+                                            <h5>Profil Saya</h5>
                                         </div>
                                         <div class="card-body">
+                                            <div class="row justify-content-md-center">
+                                                <div class="col-md-4">
+                                                    <img src="<?= IMGBASEURL ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="image">
+                                                </div>
+                                            </div>
                                             <div class="row">
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>Nama</b></label>
-                                                    <p><?= $_SESSION['Login']['name'] == null ? "-" : $_SESSION['Login']['name'] ?></p>
+                                                    <p><?= $data['user']['name'] == null ? "-" : $data['user']['name'] ?></p>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>Username</b></label>
-                                                    <p><?= $_SESSION['Login']['username'] ?></p>
+                                                    <p><?= $data['user']['username'] ?></p>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>Tanggal Lahir</b></label>                
-                                                    <p><?= $_SESSION['Login']['birthDate'] == null ? "-" : date("j F Y", strtotime($_SESSION['Login']['birthDate'])) ?></p>
+                                                    <p><?= $data['user']['birthDate'] == null ? "-" : date("j F Y", strtotime($data['user']['birthDate'])) ?></p>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>Email</b></label>
-                                                    <p><?= $_SESSION['Login']['email']?></p>
+                                                    <p><?= $data['user']['email']?></p>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>Gender</b></label>
-                                                    <p><?= $_SESSION['Login']['gender'] == null ? "-" : $_SESSION['Login']['gender'] ?></p>
+                                                    <p><?= $data['user']['gender'] == null ? "-" : $data['user']['gender'] ?></p>
                                                 </div>
-                                                <div class="form-group col-md-6">
+                                                <div class="col-md-6">
                                                     <label><b>No Telp</b></label>
-                                                    <p><?= $_SESSION['Login']['phoneNumber'] == null ? "-" : $_SESSION['Login']['phone_number'] ?></p>
+                                                    <p><?= $data['user']['phoneNumber'] == null ? "-" : $data['user']['phone_number'] ?></p>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <button class="btn btn-fill-out submit"><i class="fi-rs-edit mr-10"></i>Ubah Profil Diri</button>

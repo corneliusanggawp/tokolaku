@@ -1,20 +1,9 @@
-<?php
-    if($data['judul'] == '- Login' && isset($_SESSION['HomeLogin'])){
-        header('Location:' . BASEURL . '/home');
-        exit;
-    }else if($data['judul'] == '- Profile' && !isset($_SESSION['HomeLogin'])){
-        header('Location:' . BASEURL . '/home');
-        exit;
-    }
-?>
-
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title><?= APPNAME; ?> | Home <?= $data['judul'] ?></title>
+    <title><?= APPNAME; ?> | Home <?= $data['pageTitle'] ?></title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -169,8 +158,8 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+01) - 2345 - 6789</a></li>
-                                <li><i class="fi-rs-marker"></i><a href="page-contact.html">Our location</a></li>
+                                <li><i class="fi-rs-smartphone"></i> <a href="#">(+62) - 2345 - 6789</a></li>
+                                <li><i class="fi-rs-marker"></i><a href="page-contact.html">Toko Kami</a></li>
                             </ul>
                         </div>
                     </div>
@@ -188,7 +177,7 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info header-info-right">
                             <ul>
-                                <?php if(isset($_SESSION['Login'])) : ?>
+                                <?php if(isset($_SESSION['HomeLogin'])) : ?>
                                     <li>
                                         <a class="language-dropdown-active" href="#"> <i class="fi-rs-user"></i> Account <i class="fi-rs-angle-small-down"></i></a>
                                         <ul class="language-dropdown">
@@ -209,23 +198,16 @@
             <div class="container">
                 <div class="header-wrap">
                     <div class="logo logo-width-1">
-                        <a href="index.html"><img src="<?= BASEURL; ?>/frondend/imgs/theme/logo.svg" alt="logo"></a>
+                        <a href="<?= BASEURL; ?>/home"><img src="<?= BASEURL; ?>/frondend/imgs/theme/logo.svg" alt="logo"></a>
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
                             <form action="#">
                                 <select class="select-active">
                                     <option>All Categories</option>
-                                    <option>Women's</option>
-                                    <option>Men's</option>
-                                    <option>Cellphones</option>
-                                    <option>Computer</option>
-                                    <option>Electronics</option>
-                                    <option> Accessories</option>
-                                    <option>Home & Garden</option>
-                                    <option>Luggage</option>
-                                    <option>Shoes</option>
-                                    <option>Mother & Kids</option>
+                                    <?php foreach( $data['category'] as $category ) : ?>
+                                        <option><?= $category['name'] ?></option>
+                                        <?php endforeach; ?>
                                 </select>
                                 <input type="text" placeholder="Search for items...">
                             </form>
@@ -233,21 +215,21 @@
                         <div class="header-action-right">
                             <div class="header-action-2">
                                 <div class="header-action-icon-2">
-                                    <a href="shop-wishlist.html">
-                                        <img class="svgInject" alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-heart.svg">
+                                    <a href="#">
+                                        <img class="svgInject" alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-heart.svg">
                                         <span class="pro-count blue">4</span>
                                     </a>
                                 </div>
                                 <div class="header-action-icon-2">
-                                    <a class="mini-cart-icon" href="shop-cart.html">
-                                        <img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-cart.svg">
+                                    <a class="mini-cart-icon" href="#">
+                                        <img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-cart.svg">
                                         <span class="pro-count blue">2</span>
                                     </a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                         <ul>
                                             <li>
                                                 <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-3.jpg"></a>
+                                                    <a href="shop-product-right.html"><img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-3.jpg"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
@@ -259,7 +241,7 @@
                                             </li>
                                             <li>
                                                 <div class="shopping-cart-img">
-                                                    <a href="shop-product-right.html"><img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-2.jpg"></a>
+                                                    <a href="shop-product-right.html"><img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-2.jpg"></a>
                                                 </div>
                                                 <div class="shopping-cart-title">
                                                     <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
@@ -298,20 +280,20 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
-                                    <img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-heart.svg">
+                                    <img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-heart.svg">
                                     <span class="pro-count white">4</span>
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
-                                    <img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-cart.svg">
+                                    <img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/theme/icons/icon-cart.svg">
                                     <span class="pro-count white">2</span>
                                 </a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-3.jpg"></a>
+                                                <a href="shop-product-right.html"><img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-3.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Plain Striola Shirts</a></h4>
@@ -323,7 +305,7 @@
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Evara" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-4.jpg"></a>
+                                                <a href="shop-product-right.html"><img alt="TokoLaku" src="<?= BASEURL; ?>/frondend/imgs/shop/thumbnail-4.jpg"></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Macbook Pro 2022</a></h4>
@@ -386,7 +368,7 @@
                         <a href="page-login-register.html">Log In </a>
                     </div>
                     <div class="single-mobile-header-info">
-                        <a href="#">(+01) - 2345 - 6789 </a>
+                        <a href="#">(+62) - 2345 - 6789 </a>
                     </div>
                 </div>
                 <div class="mobile-social-icon">
