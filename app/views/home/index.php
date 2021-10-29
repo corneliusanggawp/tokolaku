@@ -8,9 +8,9 @@
                     <?php foreach( $data['category'] as $category ) : ?>
                         <div class="card-1">
                             <figure class=" img-hover-scale overflow-hidden">
-                                <a href="shop-grid-right.html"><img src="<?= IMGBASEURL; ?>/<?= $category['image'] ?>" alt="<?= $category['name'] ?>"></a>
+                                <a href="#"><img src="<?= IMGBASEURL; ?>/<?= $category['image'] ?>" alt="<?= $category['name'] ?>"></a>
                             </figure>
-                            <h5><a href="shop-grid-right.html"><?= $category['name'] ?></a></h5>
+                            <h5><a href="#"><?= $category['name'] ?></a></h5>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -4,11 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-require '../public/vendor/PHPMailer/src/Exception.php';
-require '../public/vendor/PHPMailer/src/OAuth.php';
-require '../public/vendor/PHPMailer/src/PHPMailer.php';
-require '../public/vendor/PHPMailer/src/POP3.php';
-require '../public/vendor/PHPMailer/src/SMTP.php';
+require ($_SERVER['DOCUMENT_ROOT'].'/tokolaku/public/vendor/PHPMailer/src/Exception.php');
+require ($_SERVER['DOCUMENT_ROOT'].'/tokolaku/public/vendor/PHPMailer/src/OAuth.php');
+require ($_SERVER['DOCUMENT_ROOT'].'/tokolaku/public/vendor/PHPMailer/src/PHPMailer.php');
+require ($_SERVER['DOCUMENT_ROOT'].'/tokolaku/public/vendor/PHPMailer/src/POP3.php');
+require ($_SERVER['DOCUMENT_ROOT'].'/tokolaku/public/vendor/PHPMailer/src/SMTP.php');
 
 
 class Mailer {

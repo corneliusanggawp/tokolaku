@@ -27,7 +27,7 @@ class UserModel {
 
     public function addUser($data)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES ("", null, :username, :email, :password, null, null, null, null, "", :verifCode, :date, :date) ';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, null, :username, :email, :password, null, null, null, null, 0, :verifCode, :date, :date) ';
 
         $this->db->query($query);
         $this->db->bind('email', $data['email']);

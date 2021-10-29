@@ -49,14 +49,15 @@ class FileController {
     {
         $imagePath = '../public/imgs/upload/' . $image;
 
-        unlink($imagePath);
 
-        if(!unlink($imagePath)){
-            return false;
-            exit;
-        }else{
-            return true;
-            exit;
+        if(file_exists($imagePath)){
+        	if(unlink($imagePath)){
+        		return false;
+                exit;	
+        	}else{
+        	    return true;
+                exit;
+        	}
         }
     }
 

@@ -64,7 +64,7 @@ class CategoryModel {
 
     public function addProductCategory($name, $description, $image)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES ("", :name, :description, :image) ';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :name, :description, :image) ';
 
         $this->db->query($query);
         $this->db->bind('name',$name);

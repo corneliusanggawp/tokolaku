@@ -124,9 +124,9 @@ class Admin extends Controller {
             $password = $_POST['password'];
 
             $data['user'] = $this->model('MemberModel')->getMemberData($username);
-            $PasswordVerify = password_verify($password, $data['user']['password']);
 
             if($data['user'] > 0){
+                $PasswordVerify = password_verify($password, $data['user']['password']);
                 if($PasswordVerify){
                     if($data['user']['isVerified'] == 0){
                         SweetAlert::setSweetAlert('Akun Belum Diaktivasi', 'Cek email dan lakukan aktivasi', 'info');
@@ -360,34 +360,26 @@ class Admin extends Controller {
                 header('Location:' . BASEURL . '/admin/error');
                 exit;
             }else{
-                $memberRole = $this->model('MemberModel')->getMemberRole($_SESSION['AdminLogin']['id']);
-                $role_id    = $this->model('RoleModel')->getRoleID('Admin');
+                $name           = $_POST['name'];
+                $category_id    = $_POST['category_id'];
+                $image          = FileController::uploadImage($_FILES['upload']);
+                $stock          = $_POST['stock'];
+                $description    = $_POST['description'];;
+                $price          = $_POST['price'];
+                $seller_id      = $_SESSION['AdminLogin']['id'];
 
-                if($memberRole != $role_id){
-                    header('Location:' . BASEURL . '/admin/error');
+                if(!$image){
+                    SweetAlert::setSweetAlert('Gagal Ditambahkan', 'Upload Gambar Bermasalah', 'error');
+                    header('Location:' . BASEURL . '/admin/product');
                     exit;
                 }else{
-                    $name           = $_POST['name'];
-                    $category_id    = $_POST['category_id'];
-                    $image          = FileController::uploadImage($_FILES['upload']);
-                    $stock          = $_POST['stock'];
-                    $description    = $_POST['description'];;
-                    $price          = $_POST['price'];
-                    $seller_id      = $_SESSION['AdminLogin']['id'];
-
-                    if(!$image){
-                        SweetAlert::setSweetAlert('Gagal Ditambahkan', 'Upload Gambar Bermasalah', 'error');
+                    if($this->model('ProductModel')->addProduct($name, $category_id, $image, $stock, $description, $price,$seller_id) > 0){
+                        SweetAlert::setSweetAlert('Berhasil Ditambahkan', 'Kategori baru berhasil di buat', 'success');
                         header('Location:' . BASEURL . '/admin/product');
                         exit;
                     }else{
-                        if($this->model('ProductModel')->addProduct($name, $category_id, $image, $stock, $description, $price, $seller_id) > 0){
-                            SweetAlert::setSweetAlert('Berhasil Ditambahkan', 'Kategori baru berhasil di buat', 'success');
-                            header('Location:' . BASEURL . '/admin/product');
-                            exit;
-                        }else{
-                            header('Location:' . BASEURL . '/admin/product');
-                            exit;
-                        }
+                        header('Location:' . BASEURL . '/admin/product');
+                        exit;
                     }
                 }
             }
@@ -402,18 +394,14 @@ class Admin extends Controller {
         }else{
             $id             = $_POST['id'];
             $seller_id      = $_SESSION['AdminLogin']['id'];
+            $access         = $this->model('ProductModel')->getProductAccessibility($seller_id, $id);
 
-            $access     = $this->model('ProductModel')->getProductAccessibility($seller_id, $id);
-            $memberRole = $this->model('MemberModel')->getMemberRole($_SESSION['AdminLogin']['id']);
-            $role_id    = $this->model('RoleModel')->getRoleID('Admin');
-
-            if($memberRole != $role_id || !$access){
+            if(!$access){
                 header('Location:' . BASEURL . '/admin/error');
                 exit;
             }else{
                 $name           = $_POST['name'];
                 $category_id    = $_POST['category_id'];
-                $image          = FileController::uploadImage($_FILES['upload']);
                 $stock          = $_POST['stock'];
                 $description    = $_POST['description'];;
                 $price          = $_POST['price'];
@@ -427,11 +415,10 @@ class Admin extends Controller {
                 }
 
                 if($this->model('ProductModel')->updateProduct($id, $name, $category_id, $image, $stock, $description, $price) > 0){
-                    SweetAlert::setSweetAlert('Berhasil Mengubah', 'Kategori berhasil diperbarui', 'success');
+                    SweetAlert::setSweetAlert('Berhasil Mengubah', 'Produk berhasil diperbarui', 'success');
                     header('Location:' . BASEURL . '/admin/product');
                     exit;
                 }else{
-                    SweetAlert::setSweetAlert('Gagal Mengubah', 'Kategori gagal diperbarui', 'error');
                     header('Location:' . BASEURL . '/admin/product');
                     exit;
                 }
@@ -449,10 +436,10 @@ class Admin extends Controller {
                 header('Location:' . BASEURL . '/admin/error');
                 exit;
             }else{
-                $memberRole = $this->model('MemberModel')->getMemberRole($_SESSION['AdminLogin']['id']);
-                $role_id    = $this->model('RoleModel')->getRoleID('Admin');
-
-                if($memberRole != $role_id){
+                $seller_id      = $_SESSION['AdminLogin']['id'];
+                $access         = $this->model('ProductModel')->getProductAccessibility($seller_id, $id);
+    
+                if(!$access){
                     header('Location:' . BASEURL . '/admin/error');
                     exit;
                 }else{

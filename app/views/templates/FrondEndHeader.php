@@ -16,7 +16,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/frondend/css/main.css">
     <!-- Sweet Alert -->
-    <link rel="stylesheet" href="<?= BASEURL; ?>/vendor/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/vendor/SweetAlert/sweetalert2.min.css">
 </head>
 
 <body>
@@ -33,25 +33,25 @@
                                 <!-- MAIN SLIDES -->
                                 <div class="product-image-slider">
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-2.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-1.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-3.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-4.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-5.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-6.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                     <figure class="border-radius-10">
-                                        <img src="<?= BASEURL; ?>/frondend/imgs/shop/product-16-7.jpg" alt="product image">
+                                        <img src="<?= BASEURL; ?>" alt="product image">
                                     </figure>
                                 </div>
                                 <!-- THUMBNAILS -->
@@ -158,7 +158,7 @@
                         <div class="header-info">
                             <ul>
                                 <li><i class="fi-rs-smartphone"></i> <a href="#">(+62) - 2345 - 6789</a></li>
-                                <li><i class="fi-rs-marker"></i><a href="page-contact.html">Toko Kami</a></li>
+                                <li><i class="fi-rs-marker"></i><a href="<?= BASEURL; ?>/admin/login">Toko Kami</a></li>
                             </ul>
                         </div>
                     </div>

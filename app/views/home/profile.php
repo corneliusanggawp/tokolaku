@@ -113,8 +113,7 @@
                                             <form method="post" name="enq" action="<?= BASEURL; ?>/home/update_User" enctype="multipart/form-data">
                                                 <div class="row justify-content-md-center">
                                                     <div class="col-md-4">
-                                            
-                                                        <img src="<?= IMGBASEURL; ?>/<?= $data['user']['image'] == null ? "upload.svg" : $data['user']['image'] ?>" alt="" id="image" name="imageOld">
+                                                        <img src="<?= IMGBASEURL; ?>/<?= ($data['user']['image'] == null ? "upload.svg" : $data['user']['image']) ?>" alt="" id="image" name="imageOld">
                                                         <input type="hidden" class="form-control" id="oldImage" name="oldImage" value="<?= $data['user']['image']; ?>">
                                                         <input type="file" class="form-control" id="upload" name="upload" accept="image/png, image/jpg, image/jpeg">
                                                     </div>
@@ -122,19 +121,19 @@
                                                 <div class="row">
                                                     <div class="form-group col-md-6 mt-4">
                                                         <label>Nama <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['name'] == null ? "N/A" : $data['user']['name'] ?>" class="form-control square" id="name" name="name" type="text">
+                                                        <input value="<?= $data['user']['name'] == null ? "" : $data['user']['name'] ?>" class="form-control square" id="name" name="name" type="text" required>
                                                     </div>
                                                     <div class="form-group col-md-6 mt-4">
                                                         <label>Username <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['username'] ?>" class="form-control square" id="username" name="username">
+                                                        <input value="<?= $data['user']['username'] ?>" class="form-control square" id="username" name="username" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Tanggal Lahir <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['birthDate'] ?>" class="form-control square" id="birthdate" name="birthdate" type="date">
+                                                        <input value="<?= $data['user']['birthDate'] ?>" class="form-control square" id="birthdate" name="birthdate" type="date" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Email <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['email']?>" class="form-control square" id="email" name="email" type="email">
+                                                        <input value="<?= $data['user']['email']?>" class="form-control square" id="email" name="email" type="email" required>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Gender <span class="required">*</span></label>
@@ -161,7 +160,7 @@
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>No Telp <span class="required">*</span></label>
-                                                        <input value="<?= $data['user']['phoneNumber'] == null ? "N/A" : $data['user']['phoneNumber'] ?>" class="form-control square" id="phone" name="phone" type="text" required>
+                                                        <input value="<?= $data['user']['phoneNumber'] == null ? "" : $data['user']['phoneNumber'] ?>" class="form-control square" id="phone" name="phone" type="text" required>
                                                     </div>
                                                     <div class="container">
                                                         <div class="row justify-content-md-center">

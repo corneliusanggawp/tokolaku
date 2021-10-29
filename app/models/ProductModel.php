@@ -59,8 +59,7 @@ class ProductModel {
 
         return $this->db->rowCount();
     }
-
-
+    
     public function countAllProducts()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
@@ -82,7 +81,7 @@ class ProductModel {
 
     public function addProduct($name, $category_id, $image, $stock, $description, $price, $seller_id)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES ("", :name, :category_id, :image, :stock, :description, :price, :seller_id, :date, :date) ';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :name, :category_id, :image, :stock, :description, :price, :seller_id, :date, :date) ';
 
         $this->db->query($query);
         $this->db->bind('name', $name);

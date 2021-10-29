@@ -1,6 +1,7 @@
 <?php
 
 class SweetAlert {
+
     public static function setSweetAlert($title, $text, $icon)
     {
         $_SESSION['sweetAlert'] = [

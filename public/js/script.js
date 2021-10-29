@@ -1,5 +1,5 @@
 $(function() {
-    var BASEURL     = 'http://localhost/tokolaku/public/';
+    var BASEURL     = 'http://localhost/tokolaku/public';
     var IMGBASEURL  = 'http://localhost/tokolaku/public/imgs/upload/';
     
     //Categories Menu
@@ -8,7 +8,7 @@ $(function() {
         $('.modal-footer button[type=submit]').html('Tambah');
         $('#name').val('');
         $('#description').val('');
-        $('#image').attr('src', IMGBASEURL + '/upload.svg');
+        $('#image').attr('src', IMGBASEURL + 'upload.svg');
         $('#upload').val(null);
 
         $('.modal-body form').attr('action', BASEURL + '/admin/addProductCategory');
@@ -62,10 +62,10 @@ $(function() {
         $('#stock').val('');
         $('#price').val('');
         $('#description').val('');
-        $('#image').attr('src', IMGBASEURL + '/upload.svg');
+        $('#image').attr('src', IMGBASEURL + 'upload.svg');
         $('#upload').val(null);
 
-        $('.modal-body form').attr('action', BASEURL + '/admin/addProduct');
+        $('.modal-body form').attr('action', 'http://localhost/tokolaku/public/admin/addProduct');
 
     });
 

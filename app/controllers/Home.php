@@ -73,9 +73,9 @@ class Home extends Controller {
             $password = $_POST['password'];
 
             $data['user'] = $this->model('UserModel')->getUserDataByUsername($username);
-            $PasswordVerify = password_verify($password, $data['user']['password']);
 
             if($data['user'] > 0){
+                $PasswordVerify = password_verify($password, $data['user']['password']);
                 if($PasswordVerify){
                     if($data['user']['isVerified'] == 0){
                         SweetAlert::setSweetAlert('Akun Belum Diaktivasi', 'Cek email dan lakukan aktivasi', 'info');
@@ -124,6 +124,7 @@ class Home extends Controller {
             $confirmPassword= $_POST['confirmPassword'];
 
             $UserAvailable = $this->model('UserModel')->getUserDataByUsername($username);
+            
 
             if($UserAvailable){
                 SweetAlert::setSweetAlert('Registrasi Gagal', 'Silahkan registrasi ulang', 'error');
@@ -186,10 +187,13 @@ class Home extends Controller {
                 $birthDate      = $_POST['birthdate'];
                 $phoneNumber    = $_POST['phone'];
                 
+                
                 if($_FILES['upload']['error'] == 4){
                     $image = $oldImage;
                 }else{
-                    FileController::deleteImage($oldImage);
+                    if($oldImage){
+                        FileController::deleteImage($oldImage);
+                    }
                     $image = FileController::uploadImage($_FILES['upload']);
                 }
 

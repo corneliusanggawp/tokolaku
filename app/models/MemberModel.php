@@ -19,7 +19,7 @@ class MemberModel {
 
     public function addMember($data)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES ("", null, :role, :username, :email, :password, null, null, null, null, "", :verifCode, :date, :date)';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, null, :role, :username, :email, :password, null, null, null, null, 0, :verifCode, :date, :date)';
 
         $this->db->query($query);
         $this->db->bind('email', $data['email']);
